@@ -10,7 +10,7 @@ from concurrent.futures import Future
 
 class Chamois:
 
-    __CMD_PING = 0x00
+    __CMD_PING = 0x01
     __CMD_GET_STATUS = 0xA0
     __CMD_HOME = 0xA6
     __CMD_DISABLE = 0xA8
