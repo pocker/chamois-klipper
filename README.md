@@ -65,22 +65,22 @@ gcode:
   G1 E-5 F3600
   G1 E-10 F600
   G1 E-5 F300
-  G1 E-100 F6000
+  G1 E-100 F600
 
 [gcode_macro CHAMOIS_ON_UNLOAD]
 gcode:
   M83
-  G1 E-5 F6000
+  G1 E-5 F600
 
 [gcode_macro CHAMOIS_ON_LOAD]
 gcode:
   M83
-  G1 E5 F6000
+  G1 E5 F600
 
 [gcode_macro CHAMOIS_AFTER_LOAD]
 gcode:
   M83
-  G1 E120 F6000
+  G1 E120 F600
 ```
 
 > 🎨 Adjust these macros as needed for your printer and filament requirements.
