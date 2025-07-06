@@ -3,6 +3,8 @@
 ## Overview
 The Chamois Klipper plugin is an extra module designed to enhance the functionality of the Klipper firmware by integrating with the Chamois Multi-Material Unit (MMU). This plugin facilitates the management of tool changes and filament loading/unloading processes. 🛠️🎛️
 
+> ℹ️ The plugin will automatically register `T0`, `T1`, `T2`, ... `Tn` commands and orchestrate the tool change process for you.
+
 ## Installation Instructions 🚀
 
 1. **Prerequisites** ⚙️
