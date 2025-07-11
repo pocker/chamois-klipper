@@ -82,16 +82,11 @@ class Chamois:
                 cmd, payload, future = self._job_queue.get(timeout=1)
                 logging.info(f"Processing command: {cmd}, payload: {payload}")
                 try:
-                    logging.info("Calling _send_and_receive")
                     response_code, response_payload = self._send_and_receive(cmd, payload)
-                    logging.info(f"Response code: {response_code}, payload: {response_payload}")
                     self._update_status(forced=True)
-                    logging.info("Status updated after command processing")
                     if response_code == self._RESPONSE_CODE_OK:
-                        logging.info(f"Command {cmd} completed successfully with response: {response_payload}")
                         future.set_result(response_payload)
                     elif len(response_payload) == 0:
-                        logging.warning(f"Command {cmd} failed with response code: {hex(response_code)}")
                         future.set_exception(RuntimeError(f"Command failed with response code: {hex(response_code)}"))
                     else:
                         logging.error(
@@ -143,8 +138,6 @@ class Chamois:
             try:
                 received_bytes.extend(sock.recv(1024))
             except socket.timeout:
-                logging.warning(
-                    f"Socket timeout while waiting for response. Elapsed time: {time.time() - start_time:.2f} seconds")
                 continue  # No data received, continue waiting
 
             # last_byte_time = time.time()
