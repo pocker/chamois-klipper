@@ -18,8 +18,17 @@ if [ ! -d "$KLIPPER_PATH" ]; then
     exit 1
 fi
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_PATH="${HOME}/printer_data/config"
+
 # Copy the plugin to the Klipper directory
-cp chamois.py "$KLIPPER_PATH/extras/"
+cp "$SCRIPT_DIR/chamois.py" "$KLIPPER_PATH/klippy/extras/"
+
+# Install the macros once, so local tuning is not overwritten on update
+if [ -d "$CONFIG_PATH" ] && [ ! -f "$CONFIG_PATH/chamois_macros.cfg" ]; then
+    cp "$SCRIPT_DIR/chamois_macros.cfg" "$CONFIG_PATH/"
+    echo "Installed chamois_macros.cfg to $CONFIG_PATH"
+fi
 
 # Restart Klipper service
 sudo service klipper restart
